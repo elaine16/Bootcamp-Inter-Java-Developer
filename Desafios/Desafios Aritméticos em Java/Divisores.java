@@ -22,3 +22,44 @@ Exemplos de Entrada	        Exemplos de Saída
   
 */
 
+import java.util.*;
+
+public class Divisores {
+
+  static int A, B, C, D;
+
+  public static void main(String[] args) {
+
+    Scanner scanner = new Scanner(System.in);
+
+    A = scanner.nextInt();
+    B = scanner.nextInt();
+    C = scanner.nextInt();
+    D = scanner.nextInt();
+
+    int n = -1;
+    int sqrtC = (int) Math.sqrt(C);
+
+    for (int i = 1; i <= sqrtC; ++i) {
+      if (C % i == 0) {
+        if (checkConditionsABD(i)) {
+          n = i;
+          break;
+        } else if (checkConditionsABD(C / i)) {
+          n = C / i;
+        }
+      }
+    }
+
+    System.out.println(n);
+    scanner.close();
+
+  }
+
+  static boolean checkConditionsABD(int i) {
+    if ((i % A == 0) && (i % B != 0) && (D % i != 0)) {
+      return true;
+    }
+    return false;
+  }
+}
